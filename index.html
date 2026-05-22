@@ -36,7 +36,6 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
       --pink: #E8406A;
-      --pink-soft: rgba(232,64,106,0.1);
       --teal: #0DBFA0;
       --dark: #0E0E12;
       --dark2: #17171D;
@@ -57,8 +56,6 @@
       overflow: hidden;
       -webkit-font-smoothing: antialiased;
     }
-
-    /* Grid background */
     body::after {
       content: '';
       position: fixed; inset: 0; z-index: 0; pointer-events: none;
@@ -67,8 +64,6 @@
         linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
       background-size: 60px 60px;
     }
-
-    /* Orb */
     body::before {
       content: '';
       position: fixed; top: -200px; left: 50%; transform: translateX(-50%);
@@ -77,7 +72,6 @@
       pointer-events: none; z-index: 0;
     }
 
-    /* NAV */
     nav {
       position: relative; z-index: 10;
       display: flex; align-items: center; justify-content: space-between;
@@ -111,7 +105,6 @@
     }
     .nav-pro:hover { opacity: 0.85; }
 
-    /* MAIN */
     main {
       flex: 1; display: flex; flex-direction: column;
       position: relative; z-index: 1; overflow: hidden;
@@ -119,7 +112,6 @@
       padding: 0 16px;
     }
 
-    /* WELCOME */
     .welcome {
       padding: 32px 0 20px;
       text-align: center; flex-shrink: 0;
@@ -135,10 +127,10 @@
       font-weight: 700; margin-bottom: 8px; line-height: 1.15;
     }
     .welcome p {
-      font-size: 15px; color: var(--muted); line-height: 1.6; max-width: 480px; margin: 0 auto;
+      font-size: 15px; color: var(--muted); line-height: 1.6;
+      max-width: 480px; margin: 0 auto;
     }
 
-    /* CHAT MESSAGES */
     .chat-messages {
       flex: 1; overflow-y: auto; padding: 8px 0 16px;
       display: flex; flex-direction: column; gap: 16px;
@@ -155,13 +147,8 @@
       display: flex; align-items: center; justify-content: center;
       font-size: 13px; font-weight: 600; margin-top: 2px;
     }
-    .msg-avatar.ai {
-      background: linear-gradient(135deg, var(--pink), var(--teal));
-    }
-    .msg-avatar.user-av {
-      background: var(--dark3); border: 1px solid var(--border);
-      color: var(--muted);
-    }
+    .msg-avatar.ai { background: linear-gradient(135deg, var(--pink), var(--teal)); }
+    .msg-avatar.user-av { background: var(--dark3); border: 1px solid var(--border); color: var(--muted); }
 
     .msg-bubble {
       max-width: 85%; padding: 12px 16px; border-radius: 16px;
@@ -175,7 +162,7 @@
       background: var(--pink); color: white;
       border-top-right-radius: 4px;
     }
-    .msg-bubble.loading { color: var(--muted); font-style: italic; }
+
     .typing-dots span {
       display: inline-block; width: 6px; height: 6px; border-radius: 50%;
       background: var(--muted); margin: 0 2px;
@@ -185,7 +172,6 @@
     .typing-dots span:nth-child(3) { animation-delay: 0.4s; }
     @keyframes bounce { 0%,60%,100%{transform:translateY(0)} 30%{transform:translateY(-6px)} }
 
-    /* QUICK ACTIONS */
     .quick-actions {
       flex-shrink: 0; display: flex; gap: 8px;
       flex-wrap: wrap; padding: 4px 0 12px;
@@ -198,9 +184,7 @@
       font-family: var(--font-body); transition: all 0.15s; white-space: nowrap;
     }
     .quick-btn:hover { border-color: rgba(232,64,106,0.4); color: var(--text); background: var(--dark3); }
-    .quick-btn .qicon { font-size: 14px; }
 
-    /* INPUT AREA */
     .input-area {
       flex-shrink: 0; padding: 12px 0 20px;
       border-top: 1px solid var(--border);
@@ -215,8 +199,7 @@
     textarea {
       flex: 1; background: transparent; border: none; outline: none;
       color: var(--text); font-size: 14px; font-family: var(--font-body);
-      resize: none; line-height: 1.5; max-height: 120px;
-      scrollbar-width: none;
+      resize: none; line-height: 1.5; max-height: 120px; scrollbar-width: none;
     }
     textarea::placeholder { color: var(--muted); }
     textarea::-webkit-scrollbar { display: none; }
@@ -250,44 +233,40 @@
   </a>
   <div class="nav-right">
     <span class="nav-badge">Beta gratuita</span>
-    <a href="#" class="nav-pro">Pro — 79€/mes</a>
+    <a href="mailto:hola@creatorai.app" class="nav-pro">Pro — 79€/mes</a>
   </div>
 </nav>
 
 <main>
-  <!-- WELCOME -->
   <div class="welcome" id="welcome-block">
     <div class="welcome-icon">✦</div>
     <h1>Tu IA para crecer en Instagram y TikTok</h1>
     <p>Genera ideas virales, guiones, captions y hashtags en segundos. Pregúntame lo que necesites o elige una herramienta rápida.</p>
   </div>
 
-  <!-- CHAT -->
   <div class="chat-messages" id="chat"></div>
 
-  <!-- QUICK ACTIONS -->
   <div class="quick-actions" id="quick-actions">
-    <button class="quick-btn" onclick="quickSend('💡', 'Genera 3 ideas virales para Reels de lifestyle')">
-      <span class="qicon">💡</span> Ideas virales
+    <button class="quick-btn" onclick="quickSend('💡 Ideas virales', 'Genera 3 ideas virales para Reels de lifestyle con hook, estructura y por qué funcionan')">
+      💡 Ideas virales
     </button>
-    <button class="quick-btn" onclick="quickSend('✍️', 'Escríbeme un caption para Instagram que genere muchos comentarios')">
-      <span class="qicon">✍️</span> Caption
+    <button class="quick-btn" onclick="quickSend('✍️ Caption', 'Escríbeme 2 opciones de caption para Instagram que generen muchos comentarios, con emojis y llamada a la acción')">
+      ✍️ Caption
     </button>
-    <button class="quick-btn" onclick="quickSend('#️⃣', 'Dame una estrategia de hashtags para mi cuenta de TikTok')">
-      <span class="qicon">#️⃣</span> Hashtags
+    <button class="quick-btn" onclick="quickSend('#️⃣ Hashtags', 'Dame una estrategia completa de hashtags para TikTok dividida en nichos pequeños, medianos y grandes')">
+      #️⃣ Hashtags
     </button>
-    <button class="quick-btn" onclick="quickSend('📈', 'Analiza las tendencias actuales de TikTok e Instagram')">
-      <span class="qicon">📈</span> Tendencias
+    <button class="quick-btn" onclick="quickSend('📈 Tendencias', 'Dime qué formatos y temas están arrasando ahora en TikTok e Instagram y cómo adaptarlos')">
+      📈 Tendencias
     </button>
-    <button class="quick-btn" onclick="quickSend('🎬', 'Escríbeme un guión completo para un Reel de 30 segundos')">
-      <span class="qicon">🎬</span> Guión Reel
+    <button class="quick-btn" onclick="quickSend('🎬 Guión Reel', 'Escríbeme un guión completo para un Reel de 30 segundos con hook potente, desarrollo y cierre con CTA')">
+      🎬 Guión Reel
     </button>
-    <button class="quick-btn" onclick="quickSend('🔍', 'Cómo puedo analizar a mi competencia en Instagram')">
-      <span class="qicon">🔍</span> Analizar competencia
+    <button class="quick-btn" onclick="quickSend('🔍 Competencia', 'Cómo analizo a mi competencia en Instagram y TikTok para mejorar mi estrategia de contenido')">
+      🔍 Competencia
     </button>
   </div>
 
-  <!-- INPUT -->
   <div class="input-area">
     <div class="input-row">
       <textarea
@@ -297,23 +276,23 @@
         onkeydown="handleKey(event)"
         oninput="autoResize(this)"
       ></textarea>
-      <button class="send-btn" id="send-btn" onclick="sendMessage()" aria-label="Enviar mensaje">
-        ↑
-      </button>
+      <button class="send-btn" id="send-btn" onclick="sendMessage()" aria-label="Enviar">↑</button>
     </div>
     <div class="input-hint">CreatorAI puede cometer errores. Verifica la información importante.</div>
   </div>
 </main>
 
 <script>
-const SYSTEM_PROMPT = `Eres CreatorAI, un asistente experto en creación de contenido para Instagram y TikTok. 
-Ayudas a creadores con: ideas virales, guiones, captions persuasivos, estrategias de hashtags, análisis de tendencias y crecimiento en redes sociales.
-Responde siempre en español, de forma directa, práctica y accionable. 
-Usa emojis con moderación para hacer las respuestas más visuales.
-Cuando generes ideas o listas, usa formato claro con saltos de línea.
-Sé conciso pero completo. Evita respuestas genéricas — sé específico y útil.`;
+const GEMINI_API_KEY = 'AIzaSyAK75huIOtUcICQpzixM_W4RSEwf-hP6zY';
+const GEMINI_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=' + GEMINI_API_KEY;
 
-let messages = [];
+const SYSTEM_PROMPT = `Eres CreatorAI, un asistente experto en creación de contenido para Instagram y TikTok.
+Ayudas a creadores con: ideas virales, guiones, captions persuasivos, estrategias de hashtags, análisis de tendencias y crecimiento en redes sociales.
+Responde siempre en español, de forma directa, práctica y accionable.
+Usa emojis con moderación. Cuando generes listas usa saltos de línea claros.
+Sé conciso pero completo. Evita respuestas genéricas, sé específico y útil.`;
+
+let history = [];
 let isLoading = false;
 
 function autoResize(el) {
@@ -328,7 +307,7 @@ function handleKey(e) {
   }
 }
 
-function quickSend(icon, text) {
+function quickSend(label, text) {
   hideWelcome();
   document.getElementById('user-input').value = text;
   sendMessage();
@@ -336,20 +315,20 @@ function quickSend(icon, text) {
 
 function hideWelcome() {
   const w = document.getElementById('welcome-block');
-  if (w) { w.style.display = 'none'; }
+  if (w) w.style.display = 'none';
 }
 
-function addMessage(role, content, loading = false) {
+function addMessage(role, content, loading) {
   const chat = document.getElementById('chat');
   const div = document.createElement('div');
-  div.className = `msg ${role}`;
+  div.className = 'msg ' + role;
 
   const avatar = document.createElement('div');
-  avatar.className = `msg-avatar ${role === 'ai' ? 'ai' : 'user-av'}`;
+  avatar.className = 'msg-avatar ' + (role === 'ai' ? 'ai' : 'user-av');
   avatar.textContent = role === 'ai' ? '✦' : '👤';
 
   const bubble = document.createElement('div');
-  bubble.className = `msg-bubble${loading ? ' loading' : ''}`;
+  bubble.className = 'msg-bubble';
 
   if (loading) {
     bubble.innerHTML = '<div class="typing-dots"><span></span><span></span><span></span></div>';
@@ -376,31 +355,29 @@ async function sendMessage() {
   document.getElementById('send-btn').disabled = true;
 
   addMessage('user', text);
-  messages.push({ role: 'user', content: text });
+  history.push({ role: 'user', parts: [{ text }] });
 
   const loadingBubble = addMessage('ai', '', true);
 
   try {
-    const res = await fetch('https://api.anthropic.com/v1/messages', {
+    const body = {
+      system_instruction: { parts: [{ text: SYSTEM_PROMPT }] },
+      contents: history
+    };
+
+    const res = await fetch(GEMINI_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514',
-        max_tokens: 1000,
-        system: SYSTEM_PROMPT,
-        messages: messages
-      })
+      body: JSON.stringify(body)
     });
 
     const data = await res.json();
-    const reply = data.content?.map(b => b.text || '').join('') || 'Hubo un error. Inténtalo de nuevo.';
+    const reply = data?.candidates?.[0]?.content?.parts?.[0]?.text || 'Hubo un error. Inténtalo de nuevo.';
 
-    loadingBubble.className = 'msg-bubble';
     loadingBubble.innerHTML = reply.replace(/\n/g, '<br>');
-    messages.push({ role: 'assistant', content: reply });
+    history.push({ role: 'model', parts: [{ text: reply }] });
 
   } catch(e) {
-    loadingBubble.className = 'msg-bubble';
     loadingBubble.innerHTML = 'Error de conexión. Por favor, inténtalo de nuevo.';
   }
 
